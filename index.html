@@ -3217,11 +3217,160 @@
       }
     }
 
+
+    /* ===== HERO FINAL: IMAGEM COLADA NO TOPO E NA DIREITA ===== */
+    .hero{
+      position:relative !important;
+      overflow:hidden !important;
+      min-height:clamp(700px,82vh,880px) !important;
+      background:#050806 !important;
+    }
+
+    .hero-grid{
+      position:relative !important;
+      z-index:2 !important;
+      min-height:inherit !important;
+      display:block !important;
+    }
+
+    .hero-copy{
+      position:relative !important;
+      z-index:5 !important;
+      width:min(57%,760px) !important;
+      padding:clamp(78px,8vh,110px) 0 clamp(92px,10vh,130px) !important;
+    }
+
+    .hero-visual{
+      position:absolute !important;
+      inset:0 !important;
+      width:100% !important;
+      height:100% !important;
+      min-height:100% !important;
+      margin:0 !important;
+      padding:0 !important;
+      overflow:hidden !important;
+      background:transparent !important;
+      pointer-events:none !important;
+    }
+
+    .hero-visual img{
+      position:absolute !important;
+      top:0 !important;
+      right:0 !important;
+      bottom:auto !important;
+      left:auto !important;
+
+      width:66% !important;
+      height:100% !important;
+      max-width:none !important;
+      max-height:none !important;
+
+      object-fit:cover !important;
+      object-position:68% top !important;
+
+      transform:none !important;
+      margin:0 !important;
+      -webkit-mask-image:none !important;
+      mask-image:none !important;
+      filter:saturate(.94) contrast(1.02) brightness(.94) !important;
+    }
+
+    .hero-visual::before{
+      content:"" !important;
+      position:absolute !important;
+      inset:0 !important;
+      z-index:3 !important;
+      background:
+        linear-gradient(90deg,
+          #050806 0%,
+          #050806 30%,
+          rgba(5,8,6,.96) 38%,
+          rgba(5,8,6,.78) 47%,
+          rgba(5,8,6,.46) 55%,
+          rgba(5,8,6,.16) 64%,
+          rgba(5,8,6,0) 74%) !important;
+      pointer-events:none !important;
+    }
+
+    .hero-visual::after{
+      display:none !important;
+    }
+
+    @media (max-width:1180px){
+      .hero-copy{
+        width:min(61%,710px) !important;
+      }
+
+      .hero-visual img{
+        width:69% !important;
+        object-position:66% top !important;
+      }
+    }
+
+    @media (max-width:920px){
+      .hero{
+        min-height:auto !important;
+      }
+
+      .hero-grid{
+        display:flex !important;
+        flex-direction:column !important;
+        min-height:0 !important;
+      }
+
+      .hero-copy{
+        width:100% !important;
+        max-width:760px !important;
+        padding:58px 0 28px !important;
+      }
+
+      .hero-visual{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        height:clamp(360px,62vw,560px) !important;
+        min-height:0 !important;
+        overflow:hidden !important;
+      }
+
+      .hero-visual img{
+        position:absolute !important;
+        top:0 !important;
+        right:0 !important;
+        width:100% !important;
+        height:100% !important;
+        object-fit:cover !important;
+        object-position:68% top !important;
+      }
+
+      .hero-visual::before{
+        background:
+          linear-gradient(180deg,
+            rgba(5,8,6,0) 0%,
+            rgba(5,8,6,0) 72%,
+            #050806 100%) !important;
+      }
+    }
+
+    @media (max-width:620px){
+      .hero-copy{
+        padding:46px 0 24px !important;
+      }
+
+      .hero-visual{
+        height:clamp(330px,96vw,480px) !important;
+      }
+
+      .hero-visual img{
+        object-position:64% top !important;
+      }
+    }
+
   </style>
 </head>
 
 <body>
-  <!-- BUILD_VERSION:2026-09-22-1610 -->
+  <!-- BUILD_VERSION:2026-09-22-1615 -->
   <div class="topbar">
     13 e 14 de novembro de 2026 • Alphaville/SP • Evento presencial
   </div>
