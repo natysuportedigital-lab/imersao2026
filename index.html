@@ -17,7 +17,15 @@
     html=html.replace(/\s*<a\b(?=[^>]*class="[^"]*\bmobile-cta\b[^"]*")[^>]*>.*?<\/a>/is,'');
 
     // Segurança extra: não afeta botões normais nem o WhatsApp.
-    html=html.replace('</style>','<style>.mobile-cta{display:none!important}</style></style>');
+    html=html.replace('</style>','<style>.mobile-cta{display:none!important}.second-fold-cta{margin:28px 0 8px}.second-fold-cta .btn{width:auto}@media(max-width:620px){.second-fold-cta{margin:24px 0 6px}.second-fold-cta .btn{width:100%;justify-content:center}}</style></style>');
+
+    // Adiciona o botão transparente também na segunda dobra, antes dos blocos de problemas.
+    if(!html.includes('second-fold-cta')){
+      html=html.replace(
+        '<div class="problem-grid">',
+        '<div class="second-fold-cta"><a class="btn btn-outline" href="#temas">Ver o que será discutido ↓</a></div><div class="problem-grid">'
+      );
+    }
 
     document.open();
     document.write(html);
