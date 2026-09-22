@@ -16,6 +16,12 @@
     // Remove SOMENTE o botão flutuante mobile "Ver opções de ingresso".
     html=html.replace(/\s*<a\b(?=[^>]*class="[^"]*\bmobile-cta\b[^"]*")[^>]*>.*?<\/a>/is,'');
 
+    // Move o botão transparente para a segunda dobra: remove somente do hero.
+    html=html.replace(
+      /(<div class="hero-actions ps-hero-v2-actions">[\s\S]*?)<a class="btn btn-outline" href="#temas">[\s\S]*?Ver o que será discutido ↓[\s\S]*?<\/a>/i,
+      '$1'
+    );
+
     // Segurança extra: não afeta botões normais nem o WhatsApp.
     html=html.replace('</style>','<style>.mobile-cta{display:none!important}.second-fold-cta{margin:28px 0 8px}.second-fold-cta .btn{width:auto}@media(max-width:620px){.second-fold-cta{margin:24px 0 6px}.second-fold-cta .btn{width:100%;justify-content:center}}</style></style>');
 
