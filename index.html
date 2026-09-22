@@ -3614,11 +3614,175 @@
       }
     }
 
+  
+    /* =========================================================
+       HERO V3 - bloco novo e isolado
+       ========================================================= */
+    .ps-hero-v3{
+      position:relative;
+      width:100%;
+      min-height:clamp(720px,84vh,900px);
+      overflow:hidden;
+      isolation:isolate;
+      background:#050806;
+      border-bottom:1px solid var(--line);
+    }
+
+    .ps-hero-v3-media{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
+      background:#050806;
+    }
+
+    .ps-hero-v3-media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      max-width:none;
+      max-height:none;
+      display:block;
+      object-fit:cover;
+      object-position:right top;
+      transform:none;
+      filter:saturate(.94) contrast(1.02) brightness(.91);
+    }
+
+    .ps-hero-v3-overlay{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,
+          #050806 0%,
+          rgba(5,8,6,.99) 24%,
+          rgba(5,8,6,.93) 34%,
+          rgba(5,8,6,.76) 44%,
+          rgba(5,8,6,.42) 55%,
+          rgba(5,8,6,.12) 66%,
+          rgba(5,8,6,0) 77%),
+        linear-gradient(180deg,
+          rgba(5,8,6,.08) 0%,
+          rgba(5,8,6,0) 18%,
+          rgba(5,8,6,0) 82%,
+          rgba(5,8,6,.26) 100%);
+    }
+
+    .ps-hero-v3-inner{
+      position:relative;
+      z-index:2;
+      min-height:inherit;
+      display:flex;
+      align-items:center;
+    }
+
+    .ps-hero-v3-copy{
+      width:min(58%,740px);
+      padding:clamp(84px,9vh,118px) 0 clamp(96px,10vh,132px);
+    }
+
+    .ps-hero-v3-copy .eyebrow{ margin-bottom:18px; }
+
+    .ps-hero-v3-copy h1{
+      margin:0 0 24px;
+      max-width:720px;
+      font-size:var(--fs-hero);
+      line-height:.98;
+      letter-spacing:-.048em;
+      text-wrap:balance;
+      color:#fff;
+      text-shadow:0 8px 28px rgba(0,0,0,.40);
+    }
+
+    .ps-hero-v3-copy h1 strong{ color:var(--green); }
+
+    .ps-hero-v3-copy .lead{
+      max-width:660px;
+      color:#c7cec9;
+      font-size:var(--fs-lead);
+      line-height:1.6;
+      text-shadow:0 2px 18px rgba(0,0,0,.48);
+    }
+
+    .ps-hero-v3-actions{ margin-top:30px; }
+    .ps-hero-v3-meta{ margin-top:28px; }
+
+    @media (max-width:1180px){
+      .ps-hero-v3{ min-height:clamp(700px,82vh,850px); }
+      .ps-hero-v3-copy{ width:min(61%,690px); }
+      .ps-hero-v3-media img{ object-position:72% top; }
+      .ps-hero-v3-overlay{
+        background:
+          linear-gradient(90deg,
+            #050806 0%,
+            rgba(5,8,6,.99) 27%,
+            rgba(5,8,6,.92) 39%,
+            rgba(5,8,6,.68) 50%,
+            rgba(5,8,6,.27) 62%,
+            rgba(5,8,6,0) 76%);
+      }
+    }
+
+    @media (max-width:900px){
+      .ps-hero-v3{ min-height:clamp(760px,105vh,960px); }
+      .ps-hero-v3-inner{ align-items:flex-start; }
+      .ps-hero-v3-copy{
+        width:100%;
+        max-width:720px;
+        padding:clamp(64px,9vw,88px) 0 70px;
+      }
+      .ps-hero-v3-media img{
+        object-position:67% top;
+        filter:saturate(.92) contrast(1.01) brightness(.72);
+      }
+      .ps-hero-v3-overlay{
+        background:
+          linear-gradient(180deg,
+            rgba(5,8,6,.96) 0%,
+            rgba(5,8,6,.88) 36%,
+            rgba(5,8,6,.53) 59%,
+            rgba(5,8,6,.14) 76%,
+            rgba(5,8,6,.34) 100%),
+          linear-gradient(90deg,
+            rgba(5,8,6,.88) 0%,
+            rgba(5,8,6,.52) 62%,
+            rgba(5,8,6,.08) 100%);
+      }
+    }
+
+    @media (max-width:620px){
+      .ps-hero-v3{ min-height:820px; }
+      .ps-hero-v3-copy{ padding:52px 0 62px; }
+      .ps-hero-v3-copy h1{
+        font-size:clamp(2.15rem,11vw,3.35rem);
+        line-height:1;
+      }
+      .ps-hero-v3-media img{ object-position:69% top; }
+      .ps-hero-v3-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+      .ps-hero-v3-actions .btn{
+        width:100%;
+        justify-content:center;
+      }
+      .ps-hero-v3-meta{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+        max-width:320px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
-  <!-- BUILD_VERSION:2026-09-22-1710 -->
+  <!-- BUILD_VERSION:2026-09-22-hero-v3 -->
   <div class="topbar">
     13 e 14 de novembro de 2026 • Alphaville/SP • Evento presencial
   </div>
@@ -3646,9 +3810,23 @@
   <main id="top">
 
     <!-- HERO: clareza de público + transformação + data + CTA -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
+    
+    <!-- HERO V3: reconstruído do zero -->
+    <section class="ps-hero-v3">
+      <div class="ps-hero-v3-media" aria-hidden="true">
+        <img
+          src="https://imersao.paposeguranca.com.br/__l5e/assets-v1/6a9a0af1-b205-496d-a2c6-c831ffad5932/alexandre-hero-expandido.png"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+
+      <div class="ps-hero-v3-overlay" aria-hidden="true"></div>
+
+      <div class="container ps-hero-v3-inner">
+        <div class="ps-hero-v3-copy">
           <div class="eyebrow">Imersão empresarial da segurança eletrônica</div>
 
           <h1>
@@ -3661,16 +3839,12 @@
             para empresários da segurança eletrônica que não querem depender apenas de vender e instalar mais.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#ingressos">
-              Ver opções de ingresso ↓
-            </a>
-            <a class="btn btn-outline" href="#temas">
-              Ver o que será discutido ↓
-            </a>
+          <div class="hero-actions ps-hero-v3-actions">
+            <a class="btn btn-primary" href="#ingressos">Ver opções de ingresso ↓</a>
+            <a class="btn btn-outline" href="#temas">Ver o que será discutido ↓</a>
           </div>
 
-          <div class="hero-meta">
+          <div class="hero-meta ps-hero-v3-meta">
             <div class="meta-chip">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2v3M17 2v3M3.5 9h17M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
               13 e 14 de novembro
@@ -3684,10 +3858,6 @@
               Conteúdo empresarial
             </div>
           </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <img src="https://imersao.paposeguranca.com.br/__l5e/assets-v1/6a9a0af1-b205-496d-a2c6-c831ffad5932/alexandre-hero-expandido.png" alt="Alexandre Rodrigues - Imersão Empresarial Papo Segurança" loading="eager" fetchpriority="high" decoding="async" />
         </div>
       </div>
     </section>
