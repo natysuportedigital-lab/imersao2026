@@ -3861,11 +3861,96 @@
       font-weight:800;
     }
 
-  </style>
+  
+/* ===== INGRESSOS: ESSENCIAL + PREMIUM + VIP ===== */
+.ticket-grid.ticket-grid-three{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:18px !important;
+  align-items:stretch !important;
+}
+.ticket-grid-three .ticket-card{
+  min-width:0;
+  padding:30px;
+}
+.ticket-grid-three .ticket-card h3{
+  font-size:clamp(1.65rem,2.2vw,2.2rem);
+}
+.ticket-grid-three .ticket-price{
+  font-size:clamp(2.35rem,3.7vw,3.75rem);
+}
+.ticket-card.premium{
+  border-color:rgba(255,255,255,.16);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(148,244,60,.08), transparent 32%),
+    linear-gradient(180deg,#111713,#0d120f);
+}
+.ticket-card.premium .ticket-badge{
+  border-color:rgba(148,244,60,.35);
+  color:var(--green);
+}
+.ticket-card.premium .premium-btn{
+  border-color:rgba(148,244,60,.40);
+}
+.ticket-card.premium .premium-btn:hover{
+  background:rgba(148,244,60,.08);
+}
+.vip-spots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  margin:-10px 0 20px;
+  padding:10px 14px;
+  border:1px solid rgba(148,244,60,.42);
+  border-radius:12px;
+  background:rgba(148,244,60,.09);
+  color:var(--green);
+  font-size:.76rem;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.vip-spots-dot{
+  width:7px;
+  height:7px;
+  flex:0 0 7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 5px rgba(148,244,60,.10);
+}
+.ticket-grid-three .ticket-card.vip{
+  transform:translateY(-10px);
+}
+.ticket-grid-three .ticket-features li{
+  font-size:.94rem;
+  line-height:1.45;
+}
+@media (max-width:1080px){
+  .ticket-grid.ticket-grid-three{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .ticket-grid-three .ticket-card.vip{
+    grid-column:1 / -1;
+    width:min(620px,100%);
+    justify-self:center;
+    transform:none;
+  }
+}
+@media (max-width:720px){
+  .ticket-grid.ticket-grid-three{
+    grid-template-columns:1fr !important;
+  }
+  .ticket-grid-three .ticket-card.vip{
+    grid-column:auto;
+    width:100%;
+  }
+}
+
+</style>
 </head>
 
 <body>
-  <!-- BUILD_VERSION:2026-09-22-vip-v2 -->
+  <!-- BUILD_VERSION:2026-09-22-3-ingressos-v1 -->
   <div class="topbar">
     13 e 14 de novembro de 2026 • Alphaville/SP • Evento presencial
   </div>
@@ -4286,50 +4371,73 @@
     </section>
 
     <!-- INGRESSOS -->
-    <section class="section" id="ingressos">
-      <div class="container">
-        <div class="eyebrow">Escolha sua experiência</div>
-        <h2>Dois formatos de ingresso para viver a Imersão Empresarial.</h2>
-        <p class="lead">
-          Escolha entre a experiência essencial ou a experiência VIP, com benefícios exclusivos e um convidado estratégico incluso.
-        </p>
+    
+<section class="section" id="ingressos">
+  <div class="container">
+    <div class="eyebrow">Escolha sua experiência</div>
+    <h2>Três formas de viver a Imersão Empresarial.</h2>
+    <p class="lead">
+      Escolha o nível de experiência que faz mais sentido para você e para o momento da sua empresa.
+    </p>
 
-        <div class="ticket-grid">
+    <div class="ticket-grid ticket-grid-three">
 
-          <article class="ticket-card basic">
-            <div class="ticket-badge">Ingresso Essencial</div>
-            <h3>Imersão Empresarial</h3>
-            <div class="ticket-price">R$ 997 <small>por pessoa</small></div>
+      <article class="ticket-card basic">
+        <div class="ticket-badge">Ingresso Essencial</div>
+        <h3>Essencial</h3>
+        <div class="ticket-price">R$ 997 <small>por pessoa</small></div>
 
-            <ul class="ticket-features">
-              <li><span class="feature-icon">✓</span><span>Acesso aos 2 dias de evento</span></li>
-              <li><span class="feature-icon">✓</span><span>Coffee Break (em 2 horários)</span></li>
-            </ul>
+        <ul class="ticket-features">
+          <li><span class="feature-icon">✓</span><span>Acesso aos 2 dias de evento</span></li>
+          <li><span class="feature-icon">✓</span><span>Coffee Break nos dois dias</span></li>
+        </ul>
 
-            <a class="btn btn-outline" href="https://wa.me/5511970575925?text=%F0%9F%8C%90%20Quero%20garantir%20meu%20Ingresso%20B%C3%A1sico%20para%20a%20Imers%C3%A3o%20Empresarial%20da%20Seguran%C3%A7a%20Eletr%C3%B4nica." target="_blank" rel="noopener">Escolher ingresso essencial ↗</a>
-          </article>
+        <a class="btn btn-outline" href="https://wa.me/5511970575925?text=%F0%9F%8C%90%20Quero%20garantir%20meu%20Ingresso%20Essencial%20para%20a%20Imers%C3%A3o%20Empresarial%20da%20Seguran%C3%A7a%20Eletr%C3%B4nica." target="_blank" rel="noopener">Escolher Essencial ↗</a>
+      </article>
 
-          <article class="ticket-card vip">
-            <div class="ticket-badge">VIP • Destaque</div>
-            <h3>Experiência VIP</h3>
-            <div class="ticket-price">R$ 2.497 <small>para 2 pessoas</small></div>
-              <div class="vip-value-note">Você + 1 convidado estratégico</div>
+      <article class="ticket-card premium">
+        <div class="ticket-badge">Ingresso Premium</div>
+        <h3>Premium</h3>
+        <div class="ticket-price">R$ 1.497 <small>por pessoa</small></div>
 
-            <ul class="ticket-features">
-              <li><span class="feature-icon">✓</span><span><strong>Sessão Estratégica [grupo] com Alexandre</strong></span></li>
-              <li><span class="feature-icon">✓</span><span><strong>Você + 1 convidado estratégico</strong></span></li>
-              <li><span class="feature-icon">✓</span><span>Acesso VIP à plenária</span></li>
-              <li><span class="feature-icon">✓</span><span>Área VIP com coffee liberado</span></li>
-              <li><span class="feature-icon">✓</span><span>Estacionamento incluso nos 2 dias</span></li>
-              <li><span class="feature-icon">✓</span><span>Kit VIP personalizado</span></li>
-            </ul>
+        <ul class="ticket-features">
+          <li><span class="feature-icon">✓</span><span>Acesso aos 2 dias de evento</span></li>
+          <li><span class="feature-icon">✓</span><span>Coffee Break nos dois dias</span></li>
+          <li><span class="feature-icon">✓</span><span><strong>Acesso antecipado</strong> no credenciamento e plenária</span></li>
+          <li><span class="feature-icon">✓</span><span><strong>Acesso exclusivo ao Espaço VIP</strong></span></li>
+          <li><span class="feature-icon">✓</span><span>Estacionamento incluso nos 2 dias</span></li>
+          <li><span class="feature-icon">✓</span><span>Kit personalizado</span></li>
+        </ul>
 
-            <a class="btn btn-primary" href="https://wa.me/5511970575925?text=%F0%9F%8C%90%20Quero%20garantir%20a%20Experi%C3%AAncia%20VIP%20da%20Imers%C3%A3o%20Empresarial%20da%20Seguran%C3%A7a%20Eletr%C3%B4nica%2C%20com%201%20convidado%20estrat%C3%A9gico%20incluso." target="_blank" rel="noopener">Quero garantir minha experiência VIP ↗</a>
-          </article>
+        <a class="btn btn-outline premium-btn" href="https://wa.me/5511970575925?text=%F0%9F%8C%90%20Quero%20garantir%20meu%20Ingresso%20Premium%20para%20a%20Imers%C3%A3o%20Empresarial%20da%20Seguran%C3%A7a%20Eletr%C3%B4nica." target="_blank" rel="noopener">Escolher Premium ↗</a>
+      </article>
 
+      <article class="ticket-card vip">
+        <div class="vip-spots">
+          <span class="vip-spots-dot"></span>
+          <strong>5 VAGAS RESTANTES</strong>
         </div>
-      </div>
-    </section>
+        <div class="ticket-badge">Experiência VIP</div>
+        <h3>VIP</h3>
+        <div class="ticket-price">R$ 2.997 <small>para 2 pessoas</small></div>
+        <div class="vip-value-note">Você + 1 convidado estratégico</div>
+
+        <ul class="ticket-features">
+          <li><span class="feature-icon">✓</span><span><strong>Tudo do Premium</strong></span></li>
+          <li><span class="feature-icon">✓</span><span><strong>Sessão Estratégica [grupo] com Alexandre</strong></span></li>
+          <li><span class="feature-icon">✓</span><span><strong>Foto oficial VIP com Alexandre</strong></span></li>
+          <li><span class="feature-icon">✓</span><span>1 convidado estratégico incluso</span></li>
+          <li><span class="feature-icon">✓</span><span>Kit VIP personalizado</span></li>
+        </ul>
+
+        <a class="btn btn-primary" href="https://wa.me/5511970575925?text=%F0%9F%8C%90%20Quero%20garantir%20uma%20das%205%20vagas%20da%20Experi%C3%AAncia%20VIP%20da%20Imers%C3%A3o%20Empresarial%2C%20para%20mim%20%2B%201%20convidado%20estrat%C3%A9gico." target="_blank" rel="noopener">Quero uma das 5 vagas VIP ↗</a>
+      </article>
+
+    </div>
+
+    <p class="ticket-footnote">As vagas VIP são limitadas para preservar a experiência exclusiva do grupo.</p>
+  </div>
+</section>
 
     <!-- PATROCINADORES -->
     <section class="section-sm" style="border-top:1px solid var(--line);">
@@ -4370,7 +4478,7 @@
               <span>O que está incluso no ingresso?</span><span>+</span>
             </button>
             <div class="faq-answer">
-              <p>O Ingresso Essencial inclui acesso aos dois dias e Coffee Break em 2 horários. O VIP inclui Sessão Estratégica [grupo] com Alexandre, você + 1 convidado estratégico, acesso VIP à plenária, área VIP com coffee liberado, estacionamento incluso nos 2 dias e kit VIP personalizado.</p>
+              <p>O Essencial inclui acesso aos dois dias e Coffee Break. O Premium acrescenta acesso antecipado no credenciamento e plenária, acesso exclusivo ao Espaço VIP, estacionamento e kit. O VIP inclui tudo do Premium, 1 convidado estratégico, Sessão Estratégica [grupo] com Alexandre e foto oficial VIP com Alexandre.</p>
             </div>
           </div>
 
