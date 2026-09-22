@@ -3101,11 +3101,127 @@
       }
     }
 
+
+    /* ===== HERO 2026: ENQUADRAMENTO RESPONSIVO DEFINITIVO ===== */
+
+    /* Desktop grande: foto integrada à direita, inteira dentro da altura */
+    @media (min-width: 1051px){
+      .hero-visual{
+        position:absolute !important;
+        inset:0 !important;
+        width:100% !important;
+        height:100% !important;
+        min-height:100% !important;
+        overflow:hidden !important;
+      }
+
+      .hero-visual img{
+        position:absolute !important;
+        right:0 !important;
+        left:auto !important;
+        top:auto !important;
+        bottom:0 !important;
+
+        width:auto !important;
+        height:92% !important;
+        max-width:58% !important;
+        max-height:92% !important;
+
+        object-fit:contain !important;
+        object-position:right bottom !important;
+        transform:none !important;
+      }
+    }
+
+    /* Notebook menor / tablet: texto em cima e foto em quadro controlado */
+    @media (max-width: 1050px){
+      .hero{
+        min-height:auto !important;
+        overflow:hidden !important;
+      }
+
+      .hero-grid{
+        display:flex !important;
+        flex-direction:column !important;
+        min-height:0 !important;
+      }
+
+      .hero-copy{
+        width:100% !important;
+        max-width:760px !important;
+        padding:clamp(56px,7vw,82px) 0 28px !important;
+      }
+
+      .hero-visual{
+        position:relative !important;
+        inset:auto !important;
+        width:100% !important;
+        height:clamp(360px, 56vw, 540px) !important;
+        min-height:0 !important;
+        margin:0 !important;
+        padding:0 !important;
+        display:flex !important;
+        align-items:flex-end !important;
+        justify-content:center !important;
+        overflow:hidden !important;
+        background:#050806 !important;
+      }
+
+      .hero-visual img{
+        position:absolute !important;
+        inset:0 !important;
+        margin:auto !important;
+
+        width:100% !important;
+        height:100% !important;
+        max-width:100% !important;
+        max-height:100% !important;
+
+        object-fit:contain !important;
+        object-position:center bottom !important;
+        transform:none !important;
+      }
+
+      .hero-visual::before{
+        background:
+          linear-gradient(180deg,
+            #050806 0%,
+            rgba(5,8,6,.30) 8%,
+            rgba(5,8,6,0) 34%,
+            rgba(5,8,6,0) 78%,
+            #050806 100%) !important;
+      }
+    }
+
+    /* Celular: foto menor e inteira, sem ocupar uma tela inteira sozinha */
+    @media (max-width: 620px){
+      .hero-copy{
+        padding:48px 0 24px !important;
+      }
+
+      .hero-visual{
+        height:clamp(300px, 88vw, 440px) !important;
+      }
+
+      .hero-visual img{
+        width:100% !important;
+        height:100% !important;
+        object-fit:contain !important;
+        object-position:center bottom !important;
+      }
+    }
+
+    @media (max-width: 380px){
+      .hero-visual{
+        height:300px !important;
+      }
+    }
+
   </style>
 </head>
 
 <body>
-  <!-- BUILD_VERSION:2026-09-22-1603 -->
+  <!-- BUILD_VERSION:2026-09-22-1610 -->
   <div class="topbar">
     13 e 14 de novembro de 2026 • Alphaville/SP • Evento presencial
   </div>
