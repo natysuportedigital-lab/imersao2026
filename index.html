@@ -17,6 +17,8 @@ html,body{margin:0;background:#050806;color:#fff;font-family:Arial,sans-serif}
     let html=await (await fetch('./site-full.html?v=depoimentos-reais-v1',{cache:'no-store'})).text();
 
     // Ajustes mantidos das versões anteriores.
+    // Remove completamente o ingresso Premium.
+    html=html.replace(/\s*<article class="ticket-card premium">[\s\S]*?<\/article>/i,'');
     html=html.replace('<h3>VIP</h3>','');
     html=html.replace(/\s*<a\b(?=[^>]*class="[^"]*\bmobile-cta\b[^"]*")[^>]*>.*?<\/a>/is,'');
     html=html.replace(
@@ -63,6 +65,8 @@ html,body{margin:0;background:#050806;color:#fff;font-family:Arial,sans-serif}
 
     const rvCss = `
       .mobile-cta{display:none!important}
+      .ticket-grid.ticket-grid-three{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:960px;margin-left:auto!important;margin-right:auto!important}
+      .ticket-grid-three .ticket-card.vip{grid-column:auto!important;width:auto!important;justify-self:stretch!important;transform:none!important}
       .second-fold-cta{margin:28px 0 8px}
       .second-fold-cta .btn{width:auto}
       .rv-section{overflow:hidden;background:#050806}
