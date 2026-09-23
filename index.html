@@ -4,28 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Imersão Empresarial Papo Segurança</title>
-<style>html,body{margin:0;background:#050806;color:#fff;font-family:Arial,sans-serif}#loading{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}</style>
+<style>
+html,body{margin:0;background:#050806;color:#fff;font-family:Arial,sans-serif}
+#loading{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+</style>
 </head>
 <body>
 <div id="loading">Carregando...</div>
 <script>
 (async()=>{
   try{
-    let html=await (await fetch('./site-full.html?v=mobile-cta-fix',{cache:'no-store'})).text();
+    let html=await (await fetch('./site-full.html?v=depoimentos-reais-v1',{cache:'no-store'})).text();
 
-    // Remove SOMENTE o botão flutuante mobile "Ver opções de ingresso".
+    // Ajustes mantidos das versões anteriores.
+    html=html.replace('<h3>VIP</h3>','');
     html=html.replace(/\s*<a\b(?=[^>]*class="[^"]*\bmobile-cta\b[^"]*")[^>]*>.*?<\/a>/is,'');
-
-    // Move o botão transparente para a segunda dobra: remove somente do hero.
     html=html.replace(
       /(<div class="hero-actions ps-hero-v2-actions">[\s\S]*?)<a class="btn btn-outline" href="#temas">[\s\S]*?Ver o que será discutido ↓[\s\S]*?<\/a>/i,
       '$1'
     );
 
-    // Segurança extra: não afeta botões normais nem o WhatsApp.
-    html=html.replace('</style>','<style>.mobile-cta{display:none!important}.second-fold-cta{margin:28px 0 8px}.second-fold-cta .btn{width:auto}@media(max-width:620px){.second-fold-cta{margin:24px 0 6px}.second-fold-cta .btn{width:100%;justify-content:center}}</style></style>');
-
-    // Adiciona o botão transparente também na segunda dobra, antes dos blocos de problemas.
     if(!html.includes('second-fold-cta')){
       html=html.replace(
         '<div class="problem-grid">',
@@ -33,11 +31,86 @@
       );
     }
 
+    const testimonialSection =
+      '<section class="section rv-section" id="depoimentos">'+
+        '<div class="container">'+
+          '<div class="eyebrow">Depoimentos reais</div>'+
+          '<h2>Quem já viveu essa imersão conta melhor do que qualquer promessa.</h2>'+
+          '<p class="lead">Veja a experiência de empresários que participaram da Imersão Empresarial.</p>'+
+          '<div class="rv-carousel">'+
+            '<button class="rv-arrow rv-prev" type="button" aria-label="Depoimento anterior">‹</button>'+
+            '<div class="rv-stage">'+
+              '<article class="rv-card" data-index="0">'+
+                '<div class="rv-frame"><video playsinline preload="metadata"><source src="./assets/depo_luiz.mp4" type="video/mp4"></video><button class="rv-play" type="button" aria-label="Assistir depoimento de Luiz Guilherme"><span class="rv-play-circle"></span><span>Assista ao vídeo</span></button></div>'+
+                '<div class="rv-meta"><strong>Luiz Guilherme</strong><span>CEO - Lynzee</span></div>'+
+              '</article>'+
+              '<article class="rv-card" data-index="1">'+
+                '<div class="rv-frame"><video playsinline preload="metadata"><source src="./assets/depo_heuler.mp4" type="video/mp4"></video><button class="rv-play" type="button" aria-label="Assistir depoimento de Heuler Dantas"><span class="rv-play-circle"></span><span>Assista ao vídeo</span></button></div>'+
+                '<div class="rv-meta"><strong>Heuler Dantas</strong><span>Alerta Serviços - GO</span></div>'+
+              '</article>'+
+              '<article class="rv-card" data-index="2">'+
+                '<div class="rv-frame"><video playsinline preload="metadata"><source src="./assets/depo_daniel.mp4" type="video/mp4"></video><button class="rv-play" type="button" aria-label="Assistir depoimento de Daniel Freitas"><span class="rv-play-circle"></span><span>Assista ao vídeo</span></button></div>'+
+                '<div class="rv-meta"><strong>Daniel Freitas</strong><span>CEO - Blackout Segurança SP</span></div>'+
+              '</article>'+
+            '</div>'+
+            '<button class="rv-arrow rv-next" type="button" aria-label="Próximo depoimento">›</button>'+
+            '<div class="rv-dots" aria-label="Navegação dos depoimentos"></div>'+
+          '</div>'+
+        '</div>'+
+      '</section>';
+
+    html=html.replace(/<section class="section testimonials-section"[\s\S]*?<\/section>/i,testimonialSection);
+
+    const rvCss = `
+      .mobile-cta{display:none!important}
+      .second-fold-cta{margin:28px 0 8px}
+      .second-fold-cta .btn{width:auto}
+      .rv-section{overflow:hidden;background:#050806}
+      .rv-carousel{position:relative;max-width:1280px;margin:34px auto 0;padding:0 76px 28px}
+      .rv-stage{position:relative;height:710px}
+      .rv-card{position:absolute;left:50%;top:50%;width:clamp(250px,27vw,365px);transform:translate(-50%,-50%) scale(.68);opacity:0;pointer-events:none;z-index:1;transition:transform .5s ease,opacity .4s ease,filter .4s ease}
+      .rv-frame{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:#0c0f0d;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+      .rv-frame video{width:100%;height:100%;display:block;object-fit:cover;background:#0b0d0c}
+      .rv-frame:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.02) 42%,rgba(0,0,0,.26) 100%)}
+      .rv-play{position:absolute;inset:0;z-index:3;border:0;background:rgba(0,0,0,.17);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:inherit;font-weight:850;cursor:pointer}
+      .rv-play-circle{width:78px;height:78px;border-radius:50%;border:1px solid rgba(255,255,255,.65);background:rgba(45,33,28,.6);display:grid;place-items:center;backdrop-filter:blur(6px)}
+      .rv-play-circle:before{content:"";width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #fff;margin-left:5px}
+      .rv-card.playing .rv-play{opacity:0;pointer-events:none}
+      .rv-card.playing .rv-frame:after{opacity:0}
+      .rv-meta{text-align:center;padding:18px 8px 0}
+      .rv-meta strong{display:block;font-size:1.18rem;color:#fff;font-weight:900}
+      .rv-meta span{display:block;margin-top:6px;color:#8c9690;font-size:.94rem}
+      .rv-card.active{opacity:1;transform:translate(-50%,-50%) scale(1);filter:none;pointer-events:auto;z-index:6}
+      .rv-card.prev{opacity:.48;transform:translate(calc(-50% - 385px),-50%) scale(.70);filter:brightness(.62);pointer-events:auto;z-index:3}
+      .rv-card.next{opacity:.48;transform:translate(calc(-50% + 385px),-50%) scale(.70);filter:brightness(.62);pointer-events:auto;z-index:3}
+      .rv-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:58px;height:58px;border-radius:50%;border:0;background:var(--green);color:#061006;display:grid;place-items:center;font-size:2rem;cursor:pointer;font-weight:800}
+      .rv-prev{left:6px}.rv-next{right:6px}
+      .rv-dots{display:flex;justify-content:center;gap:10px;align-items:center;margin-top:4px}
+      .rv-dot{width:10px;height:10px;border:0;border-radius:999px;background:#343a36;padding:0;cursor:pointer;transition:.2s}
+      .rv-dot.active{width:42px;background:var(--green)}
+      @media(max-width:1050px){.rv-stage{height:650px}.rv-card{width:clamp(245px,34vw,330px)}.rv-card.prev{transform:translate(calc(-50% - 300px),-50%) scale(.67)}.rv-card.next{transform:translate(calc(-50% + 300px),-50%) scale(.67)}}
+      @media(max-width:720px){.second-fold-cta{margin:24px 0 6px}.second-fold-cta .btn{width:100%;justify-content:center}.rv-carousel{padding:0 44px 22px}.rv-stage{height:620px}.rv-card{width:min(78vw,315px)}.rv-card.prev,.rv-card.next{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.84)}.rv-arrow{width:44px;height:44px;font-size:1.55rem}.rv-prev{left:0}.rv-next{right:0}}
+    `;
+    html=html.replace('</head>','<style>'+rvCss+'</style></head>');
+
+    const rvJs = '<scr'+'ipt>'+
+      '(()=>{'+
+      'const cards=[...document.querySelectorAll(".rv-card")],dotsWrap=document.querySelector(".rv-dots");if(!cards.length)return;let active=1;const mod=(n,m)=>((n%m)+m)%m;'+
+      'function pauseAll(except=-1){cards.forEach((card,i)=>{const v=card.querySelector("video");if(i!==except&&v&&!v.paused)v.pause();if(i!==except)card.classList.remove("playing")})}'+
+      'function render(){const prev=mod(active-1,cards.length),next=mod(active+1,cards.length);cards.forEach((card,i)=>{card.classList.remove("active","prev","next");if(i===active)card.classList.add("active");else if(i===prev)card.classList.add("prev");else if(i===next)card.classList.add("next")});document.querySelectorAll(".rv-dot").forEach((d,i)=>d.classList.toggle("active",i===active))}'+
+      'cards.forEach((card,i)=>{const dot=document.createElement("button");dot.className="rv-dot";dot.type="button";dot.setAttribute("aria-label","Ir para depoimento "+(i+1));dot.addEventListener("click",()=>{pauseAll();active=i;render()});dotsWrap.appendChild(dot);const btn=card.querySelector(".rv-play"),video=card.querySelector("video");btn.addEventListener("click",e=>{e.stopPropagation();if(i!==active){pauseAll();active=i;render();return}pauseAll(i);video.controls=true;video.play();card.classList.add("playing")});video.addEventListener("pause",()=>{if(!video.ended)card.classList.remove("playing")});video.addEventListener("ended",()=>{card.classList.remove("playing");video.controls=false});card.addEventListener("click",e=>{if(!e.target.closest(".rv-play")&&i!==active){pauseAll();active=i;render()}})});'+
+      'document.querySelector(".rv-prev").addEventListener("click",()=>{pauseAll();active=mod(active-1,cards.length);render()});document.querySelector(".rv-next").addEventListener("click",()=>{pauseAll();active=mod(active+1,cards.length);render()});'+
+      'let sx=null;const stage=document.querySelector(".rv-stage");stage.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});stage.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45){pauseAll();active=mod(active+(dx<0?1:-1),cards.length);render()}sx=null},{passive:true});render();'+
+      '})();'+'<'+'/scr'+'ipt>';
+
+    html=html.replace('</body>',rvJs+'</body>');
+
     document.open();
     document.write(html);
     document.close();
   }catch(e){
     document.getElementById('loading').textContent='Não foi possível carregar a página. Atualize e tente novamente.';
+    console.error(e);
   }
 })();
 </script>
